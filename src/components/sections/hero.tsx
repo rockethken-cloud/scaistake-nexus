@@ -1,63 +1,82 @@
 import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
-import { ArrowRight, TrendingUp, Shield, Coins } from "lucide-react"
+import { BrandBanner } from "@/components/ui/brand-banner"
+import { ArrowRight, TrendingUp, Shield, Coins, Sparkles } from "lucide-react"
+import scaiLogoImg from "@/assets/scai-logo.png"
 
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-scai-primary/10" />
-      <div className="absolute top-20 left-10 w-72 h-72 bg-scai-primary/20 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-scai-secondary/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+      {/* Brand banner background */}
+      <BrandBanner className="absolute inset-0" showLogo={false} />
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <div className="animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            {/* Brand logo and title */}
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <img 
+                src={scaiLogoImg} 
+                alt="SCAI Logo" 
+                className="w-16 h-16 object-contain animate-brand-pulse"
+              />
+              <div className="text-left">
+                <h1 className="text-6xl md:text-8xl font-bold text-glow bg-gradient-primary bg-clip-text text-transparent">
+                  SCAI
+                </h1>
+                <p className="text-lg text-muted-foreground -mt-2">Liquidity Staking Protocol</p>
+              </div>
+            </div>
+
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               Stake, Earn,{" "}
-              <span className="bg-gradient-primary bg-clip-text text-transparent">
+              <span className="bg-gradient-accent bg-clip-text text-transparent relative">
                 Multiply
+                <Sparkles className="absolute -top-2 -right-8 w-6 h-6 text-scai-accent animate-pulse" />
               </span>
-            </h1>
+            </h2>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Cross-chain liquidity staking with dynamic rewards. Stake SCAI or ETH and earn premium yields across multiple EVM networks.
             </p>
           </div>
 
           <div className="animate-slide-up flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button size="lg" className="gap-2 bg-gradient-primary hover:shadow-primary transition-all duration-300">
+            <Button size="lg" className="gap-2 bg-gradient-primary hover:shadow-primary hover-glow transition-all duration-300 text-lg px-8 py-4">
               Start Staking
               <ArrowRight className="w-5 h-5" />
             </Button>
-            <Button size="lg" variant="outline" className="gap-2">
+            <Button size="lg" variant="outline" className="gap-2 glass-effect hover-glow text-lg px-8 py-4">
               View Dashboard
             </Button>
           </div>
 
-          {/* Stats Cards */}
+          {/* Enhanced Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto animate-slide-up" style={{ animationDelay: '0.3s' }}>
-            <GlassCard className="p-6 text-center hover:shadow-elevation transition-all duration-300">
-              <div className="w-12 h-12 rounded-lg bg-scai-success/20 flex items-center justify-center mx-auto mb-4">
-                <TrendingUp className="w-6 h-6 text-scai-success" />
+            <GlassCard className="p-8 text-center hover-glow glass-effect transition-all duration-300">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-scai-success/30 to-scai-success/10 flex items-center justify-center mx-auto mb-6 animate-pulse-glow">
+                <TrendingUp className="w-8 h-8 text-scai-success" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">24.5%</h3>
-              <p className="text-muted-foreground">Current APR</p>
+              <h3 className="text-3xl font-bold text-glow mb-2">24.5%</h3>
+              <p className="text-muted-foreground font-medium">Current APR</p>
+              <div className="mt-4 h-1 bg-gradient-to-r from-scai-success/20 to-scai-success rounded-full" />
             </GlassCard>
 
-            <GlassCard className="p-6 text-center hover:shadow-elevation transition-all duration-300">
-              <div className="w-12 h-12 rounded-lg bg-scai-accent/20 flex items-center justify-center mx-auto mb-4">
-                <Coins className="w-6 h-6 text-scai-accent" />
+            <GlassCard className="p-8 text-center hover-glow glass-effect transition-all duration-300 scale-105">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-scai-accent/30 to-scai-accent/10 flex items-center justify-center mx-auto mb-6 animate-pulse-glow">
+                <Coins className="w-8 h-8 text-scai-accent" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">$2.4M</h3>
-              <p className="text-muted-foreground">Total Value Locked</p>
+              <h3 className="text-3xl font-bold text-glow mb-2">$2.4M</h3>
+              <p className="text-muted-foreground font-medium">Total Value Locked</p>
+              <div className="mt-4 h-1 bg-gradient-to-r from-scai-accent/20 to-scai-accent rounded-full" />
             </GlassCard>
 
-            <GlassCard className="p-6 text-center hover:shadow-elevation transition-all duration-300">
-              <div className="w-12 h-12 rounded-lg bg-scai-warning/20 flex items-center justify-center mx-auto mb-4">
-                <Shield className="w-6 h-6 text-scai-warning" />
+            <GlassCard className="p-8 text-center hover-glow glass-effect transition-all duration-300">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-scai-warning/30 to-scai-warning/10 flex items-center justify-center mx-auto mb-6 animate-pulse-glow">
+                <Shield className="w-8 h-8 text-scai-warning" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">1,247</h3>
-              <p className="text-muted-foreground">Active Stakers</p>
+              <h3 className="text-3xl font-bold text-glow mb-2">1,247</h3>
+              <p className="text-muted-foreground font-medium">Active Stakers</p>
+              <div className="mt-4 h-1 bg-gradient-to-r from-scai-warning/20 to-scai-warning rounded-full" />
             </GlassCard>
           </div>
         </div>

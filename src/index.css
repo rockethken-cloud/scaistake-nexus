@@ -61,6 +61,17 @@ All colors MUST be HSL.
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-spring: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
+    /* Advanced Effects */
+    --glow-primary: 0 0 50px hsl(258 90% 66% / 0.4);
+    --glow-secondary: 0 0 30px hsl(280 85% 70% / 0.3);
+    --glow-accent: 0 0 40px hsl(200 100% 70% / 0.35);
+    
+    /* Particle Effects */
+    --particle-color-1: hsl(258 90% 66% / 0.6);
+    --particle-color-2: hsl(280 85% 70% / 0.4);
+    --particle-color-3: hsl(200 100% 70% / 0.5);
+  }
+
     --sidebar-background: 0 0% 98%;
 
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -124,5 +135,133 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background-image: 
+      radial-gradient(circle at 20% 80%, hsl(258 90% 66% / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(280 85% 70% / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, hsl(200 100% 70% / 0.05) 0%, transparent 50%);
   }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.8);
+  }
+}
+
+/* Particle Animation Keyframes */
+@keyframes float-particles {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-20px) rotate(90deg); }
+  50% { transform: translateY(-10px) rotate(180deg); }
+  75% { transform: translateY(-30px) rotate(270deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px hsl(258 90% 66% / 0.3);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 40px hsl(258 90% 66% / 0.6);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes drift-right {
+  0% { transform: translateX(-100px) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(calc(100vw + 100px)) rotate(360deg); opacity: 0; }
+}
+
+@keyframes matrix-rain {
+  0% { transform: translateY(-100vh); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes brand-pulse {
+  0%, 100% { 
+    filter: drop-shadow(0 0 10px hsl(258 90% 66% / 0.5));
+  }
+  50% { 
+    filter: drop-shadow(0 0 30px hsl(258 90% 66% / 0.8)) drop-shadow(0 0 50px hsl(280 85% 70% / 0.6));
+  }
+}
+
+/* Custom Animation Classes */
+.animate-float-particles {
+  animation: float-particles 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-drift-right {
+  animation: drift-right 20s linear infinite;
+}
+
+.animate-matrix-rain {
+  animation: matrix-rain 15s linear infinite;
+}
+
+.animate-brand-pulse {
+  animation: brand-pulse 2s ease-in-out infinite;
+}
+
+/* Glassmorphism Enhanced */
+.glass-effect {
+  background: linear-gradient(135deg, 
+    hsla(220 25% 12% / 0.9), 
+    hsla(220 20% 15% / 0.7)
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid hsla(258 90% 66% / 0.2);
+  box-shadow: 
+    0 8px 32px hsla(220 27% 8% / 0.4),
+    inset 0 1px 0 hsla(255 100% 100% / 0.1);
+}
+
+/* Hover Effects */
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: var(--glow-primary);
+  transform: translateY(-2px);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px hsl(258 90% 66% / 0.6);
+}
+
+/* Background Pattern Overlay */
+.pattern-overlay {
+  position: relative;
+}
+
+.pattern-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23a855f7" fill-opacity="0.05"><circle cx="30" cy="30" r="2"/></g></svg>');
+  pointer-events: none;
 }
